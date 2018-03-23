@@ -1,30 +1,27 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
-import DevTools from './DevTools';
+// import DevTools from './DevTools';
 
-import App from '../components/App';
-import NotFoundPage from '../components/NotFoundPage';
+import IndexPage from '../pages/IndexPage';
 
 const Root = ({ store }) => (
 	<Provider store={store}>
-		<div>		{/* comment */}
+		<div>
 			<Switch>
-				<Route path="/" component={App} />
-				<Route component={NotFoundPage} />
+				<Route path="/" component={IndexPage} />
 			</Switch>
-			<div className="devtools">
+			{/* <div className="devtools">
 				<DevTools />
-			</div>
+			</div> */}
 		</div>
 	</Provider>
 );
 
 Root.propTypes = {
-	store: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+	store: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
 };
 
 export default Root;

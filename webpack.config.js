@@ -1,9 +1,8 @@
-
 const webpack = require('webpack');
 const path = require('path');
 
 const APP_FOLDER = path.resolve(__dirname, './src');
-const SCSS_FOLDER = path.resolve(__dirname, './src/scss');
+const SCSS_FOLDER = path.resolve(__dirname, './scss');
 const ASSETS_FOLDER = path.resolve(__dirname, './src/assets');
 const DIST_FOLDER = path.resolve(APP_FOLDER, './dist');
 const DIST_FOLDER_STYLE = path.resolve(DIST_FOLDER, './css');
@@ -19,14 +18,14 @@ const extractSCSSBundle = new ExtractTextPlugin({
 	allChunks: true
 });
 
-require('dotenv').config();		// load from .env file
+require('dotenv').config(); // load from .env file
 
 const config = {
 	// entry: ['./src/index.jsx', './src/scss/index.scss', './src/components/main.scss'],
-	entry: ['./src/index.jsx', './src/scss/index.scss'],
+	entry: ['./src/index.jsx', './scss/index.scss'],
 	output: {
 		path: path.resolve('dist'),
-		filename: 'bundle.js',
+		filename: 'bundle.js'
 	},
 
 	devtool: 'inline-source-map', // development
@@ -34,7 +33,7 @@ const config = {
 	//	devtool: 'source-map',	// production
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
-		compress: false,		// true
+		compress: false, // true
 		// inline: true,
 		port: 8071,
 		clientLogLevel: 'info',
@@ -48,21 +47,13 @@ const config = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader',
+				loader: 'babel-loader'
 			},
 			{
 				test: /\.jsx$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader',
+				loader: 'babel-loader'
 			},
-			// { // regular css files
-			// 	test: /\.css$/,
-			// 	loader: ExtractTextPlugin.extract({
-			// 		fallback: 'style-loader/url!file-loader',
-			// 		use: ['css-loader'],
-			// 		publicPath: DIST_FOLDER_STYLE,
-			// 	}),
-			// },
 
 			{
 				test: /\.(sass|scss)$/,
@@ -83,10 +74,10 @@ const config = {
 				include: ASSETS_FOLDER,
 				loader: 'file-loader?name=assets/[name].[ext]'
 			}
-		],
+		]
 	},
 	resolve: {
-		extensions: ['.js', '.jsx'],
+		extensions: ['.js', '.jsx']
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin(['NODE_ENV', 'API_KEY']),
@@ -94,7 +85,7 @@ const config = {
 		new CopyWebpackPlugin([{ from: 'index.html', to: '.' }], { debug: 'info' }),
 		new CopyWebpackPlugin([{ from: 'src/images', to: 'images' }], { debug: 'info' }),
 		new CopyWebpackPlugin([{ from: 'src/assets/fonts', to: 'assets/fonts' }], { debug: 'info' })
-	],
+	]
 };
 
 module.exports = config;
