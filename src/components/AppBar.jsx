@@ -177,7 +177,7 @@ class ButtonAppBar extends Component {
 										<AppBarMenuItem
 											toggleDrawer={toggleDrawer}
 											linkId="academics"
-											content="Academics"
+											content="JV-Academics"
 										/>
 										<AppBarMenuItem
 											toggleDrawer={toggleDrawer}
